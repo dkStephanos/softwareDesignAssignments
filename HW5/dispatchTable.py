@@ -1,5 +1,5 @@
-import os
-from getFileFromUser import getFileFromUser
+import os   #Required to make os calls to open applications
+from getFileFromUser import getFileFromUser #Imports method to get filename from user
 
 [fileName, fileDesc, fileExt] = getFileFromUser()
 

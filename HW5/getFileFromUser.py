@@ -1,4 +1,4 @@
-import re
+import re   #Required to validate user entry using regular expressions
 
 def getFileFromUser():
     #Collect file name to be opened from User
