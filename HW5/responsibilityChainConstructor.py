@@ -16,8 +16,9 @@ class Handler(ABC):
 class txtWordFileHandler(Handler):
     def handle_request(self, fileExt, fileName):
         if fileExt == 'txt':
-            value = os.system("open -b com.microsoft.Word " + fileName)
-            if value != 0:
+            try:
+                value = os.system("open -b com.microsoft.Word " + fileName)
+            except:
                 self._sideChainSuccessor.handle_request(fileExt, fileName)
         elif self._successor is not None:
             self._successor.handle_request(fileExt, fileName)
