@@ -8,7 +8,7 @@ def getFileFromUser():
     #Declare regex for testing User entry, if doesn't match, display error and quit
     pattern = re.compile(".+[.].+")
     if not pattern.match(fileName):
-        print("\nBad entry. Try again.")
+        print("\nBad entry. File must be entered: 'fileName.fileExt' \nFor Example: 'foo.txt' \nTry again.")
         exit(0)
 
     #If file entry is good, split into fileDesc and fileExt
