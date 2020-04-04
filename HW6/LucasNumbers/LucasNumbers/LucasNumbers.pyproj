@@ -21,8 +21,11 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="TimeoutError.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="LucasNumbers.py" />
-    <Compile Include="Problem1.py">
+    <Compile Include="ProblemOne.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
