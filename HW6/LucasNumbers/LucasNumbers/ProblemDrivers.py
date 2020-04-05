@@ -1,25 +1,40 @@
 import time
-import sys
 from ProblemOne import ProblemOne
-from ProblemFive import ProblemFive
 from ProblemTwo import calcLucasNumberVer2
+from ProblemFour import ProblemFour
+from ProblemFive import ProblemFive
 
 class ProblemDrivers(object):
     def getParams(self):
-        print("\nEnter the index of the Lucas Number you want calculated: (enter 'Q' to exit)")
-        lucasIndex = input()
-        if lucasIndex == 'q' or lucasIndex == 'Q':
-            sys.exit(0)
-        print("\nEnter the timespan in which to calculate the series: ")
-        timeSpan = input()
+        while True:
+            print("\nEnter the index of the Lucas Number you want calculated: (enter 'Q' to return to main menu)")
+            lucasIndex = input()
+            #If user chooses to quit, we return -2 as lucasIndex so we know to return back to main
+            if lucasIndex == 'q' or lucasIndex == 'Q':
+                return [-2, 0]
+            print("\nEnter the timespan in which to calculate the series: ")
+            timeSpan = input()
 
-        return [lucasIndex, timeSpan]
+            if len(lucasIndex) > 0 and len(timeSpan) > 0:
+                return [lucasIndex, timeSpan]
+
+    def getLucasIndex(self):
+        while True:
+            print("\nEnter the index of the Lucas Number you want calculated: (enter 'Q' to return to main menu)")
+            lucasIndex = input()
+            #If user chooses to quit, we return -2 so we know to return back to main
+            if lucasIndex == 'q' or lucasIndex == 'Q':
+                return -2
+            elif len(lucasIndex) > 0:
+                return int(lucasIndex)
 
     def problemOneDriver(self):
         problemOne = ProblemOne()
     
         while True:
             [lucasIndex, timeSpan] = self.getParams()
+            if lucasIndex == -2:
+                return
             lucasIndex = int(lucasIndex)
             timeSpan = int(timeSpan)
             currIndex = 0
@@ -29,7 +44,7 @@ class ProblemDrivers(object):
                    startTime = time.time()
                    endTime = startTime + timeSpan
                    tic = time.perf_counter()
-                   result = problemOne.calcLucasNumberVer2(currIndex, startTime, timeSpan)
+                   result = problemOne.calcLucasNumber(currIndex, startTime, timeSpan)
                    toc = time.perf_counter()
                    print('lucas {0} is {1} - computed with {2} {3} in {4:.5f} seconds'.format(currIndex, result[0], result[1], 'call' if result[1] == 1 else 'calls', (toc - tic)))
                    currIndex += 1
@@ -41,6 +56,8 @@ class ProblemDrivers(object):
     def problemTwoDriver(self):
         while True:
             [lucasIndex, timeSpan] = self.getParams()
+            if lucasIndex == -2:
+                return
             lucasIndex = int(lucasIndex)
             timeSpan = int(timeSpan)
             currIndex = 0
@@ -62,16 +79,29 @@ class ProblemDrivers(object):
                     break
 
 
+    def problemFourDriver(self):
+        problemFour = ProblemFour()
+    
+        while True:
+            lucasIndex = self.getLucasIndex()
+            if lucasIndex == -2:
+                return
+            currIndex = 0
+            while currIndex <= lucasIndex:
+                tic = time.perf_counter()
+                result = problemFour.calcLucasNumber(currIndex)
+                toc = time.perf_counter()
+                print('lucas {0} is {1} - computed in {2:.5f} seconds'.format(currIndex, result, (toc - tic)))
+                currIndex += 1
+                
     def problemFiveDriver(self):
         problemFive = ProblemFive()
 
         while True:
-            print("\nEnter the index of the Lucas Number you want calculated: (enter 'Q' to exit)")
-            lucasIndex = input()
-            if lucasIndex == 'q' or lucasIndex == 'Q':
-                sys.exit(0)
-            elif len(lucasIndex) > 0:
-                lucasNumberFloat = problemFive.calcLucasNumber(int(lucasIndex))
-                lucasNumberInt = int(round(lucasNumberFloat))
-                lucasNumberDigitCount = len(str(lucasNumberInt))
-                print('lucas {0} is {1} -- i.e., {2} -- with {3} {4}'.format(lucasIndex, lucasNumberFloat, lucasNumberInt, lucasNumberDigitCount, 'digit' if lucasNumberDigitCount == 1 else 'digits' ))
+            lucasIndex = self.getLucasIndex()
+            if lucasIndex == -2:
+                return
+            lucasNumberFloat = problemFive.calcLucasNumber(lucasIndex)
+            lucasNumberInt = int(round(lucasNumberFloat))
+            lucasNumberDigitCount = len(str(lucasNumberInt))
+            print('lucas {0} is {1} -- i.e., {2} -- with {3} {4}'.format(lucasIndex, lucasNumberFloat, lucasNumberInt, lucasNumberDigitCount, 'digit' if lucasNumberDigitCount == 1 else 'digits' ))
