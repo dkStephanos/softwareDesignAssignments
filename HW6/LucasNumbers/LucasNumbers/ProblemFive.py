@@ -10,7 +10,7 @@ class ProblemFive(object):
 
     def calcLucasNumber(self, index):
         if index >= 0:
-            return int(round((self.goldenRatio ** index) + ((1 - self.goldenRatio) ** index)))
+            return (self.goldenRatio ** index) + ((1 - self.goldenRatio) ** index)
         else:
             return -1
 

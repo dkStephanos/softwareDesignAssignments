@@ -71,4 +71,7 @@ class ProblemDrivers(object):
             if lucasIndex == 'q' or lucasIndex == 'Q':
                 sys.exit(0)
             elif len(lucasIndex) > 0:
-                print('lucas {0} is {1}'.format(lucasIndex, problemFive.calcLucasNumber(int(lucasIndex))))
+                lucasNumberFloat = problemFive.calcLucasNumber(int(lucasIndex))
+                lucasNumberInt = int(round(lucasNumberFloat))
+                lucasNumberDigitCount = len(str(lucasNumberInt))
+                print('lucas {0} is {1} -- i.e., {2} -- with {3} {4}'.format(lucasIndex, lucasNumberFloat, lucasNumberInt, lucasNumberDigitCount, 'digit' if lucasNumberDigitCount == 1 else 'digits' ))
