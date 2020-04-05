@@ -22,8 +22,10 @@ def problemOneDriver():
             try:
                startTime = time.time()
                endTime = startTime + timeSpan
+               tic = time.perf_counter()
                result = problemOne.calcLucasNumber(currIndex, startTime, timeSpan)
-               print('lucas {0} is {1} - computed with {2} calls in {3} seconds'.format(currIndex, result[0], result[1], (timeSpan - (endTime - time.time()))))
+               toc = time.perf_counter()
+               print('lucas {0} is {1} - computed with {2} {3} in {4:.5f} seconds'.format(currIndex, result[0], result[1], 'call' if result[1] == 1 else 'calls', (toc - tic)))
                currIndex += 1
                endTime = time.time() + timeSpan
             except TimeoutError as err:

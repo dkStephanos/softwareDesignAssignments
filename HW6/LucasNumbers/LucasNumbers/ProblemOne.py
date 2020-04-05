@@ -18,24 +18,24 @@ class ProblemOne(object):
         if(lucasIndex < 0 or timeSpan < 0):
             return -1
         
-        def getNextNumber(currIndex, endTime):
-            self.numCalls += 1
+        def getNextNumber(currIndex, endTime, callCount):
+            callCount += 1
             if time.time() > endTime:
                 raise TimeoutError("Exceeded timespan")
             elif currIndex < 0:
                 print('\nInvalid index')
             elif currIndex == 0:
-                result =  [self.lucasZero, 1]
+                result =  [self.lucasZero, callCount]
             elif currIndex == 1:
-                result =  [self.lucasOne, 1]
+                result =  [self.lucasOne, callCount]
             else:
-                result1 = getNextNumber(currIndex - 1, endTime)
-                result2 = getNextNumber(currIndex - 2, endTime)
-                result = [result1[0] + result2[0], result1[1] + result2[1] + 1]
+                result1 = getNextNumber(currIndex - 1, endTime, callCount)
+                result2 = getNextNumber(currIndex - 2, endTime, result1[1])
+                result = [result1[0] + result2[0], result2[1]]
 
             return result
         
-        result = getNextNumber(lucasIndex, self.endTime)
+        result = getNextNumber(lucasIndex, self.endTime, 0)
         #Reset self.numCalls so I can call method multiple times in one session
         self.numCalls = 0
         #Returns [currLucasNum, numCalls]
