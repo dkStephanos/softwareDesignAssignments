@@ -1,11 +1,15 @@
 import time
+import sys
 from ProblemOne import ProblemOne
+from ProblemFive import ProblemFive
 from ProblemTwo import calcLucasNumberVer2
 
 class ProblemDrivers(object):
     def getParams(self):
-        print("\nEnter the index of the Lucas Number you want calculated: ")
+        print("\nEnter the index of the Lucas Number you want calculated: (enter 'Q' to exit)")
         lucasIndex = input()
+        if lucasIndex == 'q' or lucasIndex == 'Q':
+            sys.exit(0)
         print("\nEnter the timespan in which to calculate the series: ")
         timeSpan = input()
 
@@ -56,3 +60,15 @@ class ProblemDrivers(object):
                 except TimeoutError as err:
                     print('\n\ntimeout at lucas {0} after {1} {2}'.format(currIndex, timeSpan, 'seconds' if timeSpan > 1 else 'second'))
                     break
+
+
+    def problemFiveDriver(self):
+        problemFive = ProblemFive()
+
+        while True:
+            print("\nEnter the index of the Lucas Number you want calculated: (enter 'Q' to exit)")
+            lucasIndex = input()
+            if lucasIndex == 'q' or lucasIndex == 'Q':
+                sys.exit(0)
+            elif len(lucasIndex) > 0:
+                print('lucas {0} is {1}'.format(lucasIndex, problemFive.calcLucasNumber(int(lucasIndex))))
