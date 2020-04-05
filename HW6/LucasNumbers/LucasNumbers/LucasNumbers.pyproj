@@ -21,6 +21,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ProblemTwo.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ProblemDrivers.py">
       <SubType>Code</SubType>
     </Compile>
