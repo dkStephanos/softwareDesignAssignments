@@ -1,5 +1,7 @@
 import time
+import globals
 from ProblemOne import ProblemOne
+from ProblemTwoA import ProblemTwoA
 from ProblemTwo import calcLucasNumberVer2
 from ProblemFour import ProblemFour
 from ProblemFive import ProblemFive
@@ -43,16 +45,39 @@ class ProblemDrivers(object):
             while currIndex <= lucasIndex:
                 try:
                    startTime = time.time()
-                   endTime = startTime + timeSpan
                    tic = time.perf_counter()
                    result = problemOne.calcLucasNumber(currIndex, startTime, timeSpan)
                    problemOne.numCalls = 0
                    toc = time.perf_counter()
                    print('lucas {0} is {1} - computed with {2} {3} in {4:.5f} seconds'.format(currIndex, result[0], result[1], 'call' if result[1] == 1 else 'calls', (toc - tic)))
                    currIndex += 1
-                   endTime = time.time() + timeSpan
                 except TimeoutError as err:
                     print('\n\ntimeout at lucas {0} after {1} {2}'.format(currIndex, timeSpan, 'seconds' if timeSpan > 1 else 'second'))
+                    break
+
+    def problemTwoADriver(self):
+        problemTwoA = ProblemTwoA()
+        globals.init()
+        while True:
+            [lucasIndex, timeSpan] = self.getParams()
+            #If -2, we quit back to main menu
+            if lucasIndex == -2: 
+                return
+            lucasIndex = int(lucasIndex)
+            globals.timeSpan = int(timeSpan)
+            currIndex = 0
+
+            while currIndex <= lucasIndex:
+                try:
+                   globals.startTime = time.time()
+                   tic = time.perf_counter()
+                   result = problemTwoA.calcLucasNumber(currIndex)
+                   problemTwoA.numCalls = 0
+                   toc = time.perf_counter()
+                   print('lucas {0} is {1} - computed with {2} {3} in {4:.5f} seconds'.format(currIndex, result[0], result[1], 'call' if result[1] == 1 else 'calls', (toc - tic)))
+                   currIndex += 1
+                except TimeoutError as err:
+                    print('\n\ntimeout at lucas {0} after {1} {2}'.format(currIndex, globals.timeSpan, 'seconds' if globals.timeSpan > 1 else 'second'))
                     break
 
     def problemTwoDriver(self):

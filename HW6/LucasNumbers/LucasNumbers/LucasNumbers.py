@@ -7,12 +7,12 @@ if __name__ == "__main__":
 
     #dispatchTable to choose which solution to run
     problemSolutions = {'1': problemDrivers.problemOneDriver, 
-                        '2': problemDrivers.problemTwoDriver, 
+                        '2a': problemDrivers.problemTwoADriver, 
                         '4': problemDrivers.problemFourDriver, 
                         '5': problemDrivers.problemFiveDriver}
 
     while True:
-        print("\nWhich solution would you like demo? (1, 2, 4, 5): ")
+        print("\nWhich solution would you like demo? (1, 2a, 4, 5): ")
         choice = input()
         if choice in problemSolutions:
             problemSolutions[choice]()

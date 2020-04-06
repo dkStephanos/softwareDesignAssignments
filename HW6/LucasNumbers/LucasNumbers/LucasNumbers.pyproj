@@ -21,6 +21,12 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="globals.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ProblemTwoA.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ProblemFive.py">
       <SubType>Code</SubType>
     </Compile>
