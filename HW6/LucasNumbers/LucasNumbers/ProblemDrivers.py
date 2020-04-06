@@ -33,6 +33,7 @@ class ProblemDrivers(object):
     
         while True:
             [lucasIndex, timeSpan] = self.getParams()
+            #If -2, we quit back to main menu
             if lucasIndex == -2:
                 return
             lucasIndex = int(lucasIndex)
@@ -45,6 +46,7 @@ class ProblemDrivers(object):
                    endTime = startTime + timeSpan
                    tic = time.perf_counter()
                    result = problemOne.calcLucasNumber(currIndex, startTime, timeSpan)
+                   problemOne.numCalls = 0
                    toc = time.perf_counter()
                    print('lucas {0} is {1} - computed with {2} {3} in {4:.5f} seconds'.format(currIndex, result[0], result[1], 'call' if result[1] == 1 else 'calls', (toc - tic)))
                    currIndex += 1
