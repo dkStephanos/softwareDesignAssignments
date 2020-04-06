@@ -4,6 +4,7 @@ from ProblemOne import ProblemOne
 from ProblemTwoA import ProblemTwoA
 from ProblemTwoB import ProblemTwoB
 from ProblemTwoC import calcLucasNumberVer2C
+from ProblemThree import ProblemThree
 from ProblemFour import ProblemFour
 from ProblemFive import ProblemFive
 
@@ -132,6 +133,30 @@ class ProblemDrivers(object):
                     print('\n\ntimeout at lucas {0} after {1} {2}'.format(currIndex, timeSpan, 'seconds' if timeSpan > 1 else 'second'))
                     break
 
+    def problemThreeDriver(self):
+        problemThree = ProblemThree()
+    
+        while True:
+            [lucasIndex, timeSpan] = self.getParams()
+            #If -2, we quit back to main menu
+            if lucasIndex == -2:
+                return
+            lucasIndex = int(lucasIndex)
+            timeSpan = int(timeSpan)
+            currIndex = 0
+
+            while currIndex <= lucasIndex:
+                try:
+                   startTime = time.time()
+                   tic = time.perf_counter()
+                   result = problemThree.calcLucasNumber(currIndex, startTime, timeSpan)
+                   problemThree.numCalls = 0
+                   toc = time.perf_counter()
+                   print('lucas {0} is {1} - computed with {2} {3} in {4:.5f} seconds'.format(currIndex, result[0] + (0 if result[1] == None else result[1]) , result[2], 'call' if result[2] == 1 else 'calls', (toc - tic)))
+                   currIndex += 1
+                except TimeoutError as err:
+                    print('\n\ntimeout at lucas {0} after {1} {2}'.format(currIndex, timeSpan, 'seconds' if timeSpan > 1 else 'second'))
+                    break
 
     def problemFourDriver(self):
         problemFour = ProblemFour()
