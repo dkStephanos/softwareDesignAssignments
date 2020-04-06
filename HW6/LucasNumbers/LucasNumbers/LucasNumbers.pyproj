@@ -36,7 +36,7 @@
     <Compile Include="ProblemFour.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ProblemTwo.py">
+    <Compile Include="ProblemTwoC.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ProblemDrivers.py">

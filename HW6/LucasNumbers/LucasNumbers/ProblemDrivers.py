@@ -3,7 +3,7 @@ import globals
 from ProblemOne import ProblemOne
 from ProblemTwoA import ProblemTwoA
 from ProblemTwoB import ProblemTwoB
-from ProblemTwo import calcLucasNumberVer2
+from ProblemTwoC import calcLucasNumberVer2C
 from ProblemFour import ProblemFour
 from ProblemFive import ProblemFive
 
@@ -106,7 +106,7 @@ class ProblemDrivers(object):
                     print('\n\ntimeout at lucas {0} after {1} {2}'.format(currIndex, timeSpan, 'seconds' if timeSpan > 1 else 'second'))
                     break
 
-    def problemTwoDriver(self):
+    def problemTwoCDriver(self):
         while True:
             [lucasIndex, timeSpan] = self.getParams()
             if lucasIndex == -2:
@@ -120,9 +120,10 @@ class ProblemDrivers(object):
                     startTime = time.time()
                     endTime = startTime + timeSpan
                     tic = time.perf_counter()
-                    calcLucasNumberVer2.startTime = startTime
-                    calcLucasNumberVer2.timeSpan = timeSpan
-                    result = calcLucasNumberVer2(currIndex)
+                    calcLucasNumberVer2C.startTime = startTime
+                    calcLucasNumberVer2C.timeSpan = timeSpan
+                    calcLucasNumberVer2C.numCalls = 0
+                    result = calcLucasNumberVer2C(currIndex)
                     toc = time.perf_counter()
                     print('lucas {0} is {1} - computed with {2} {3} in {4:.5f} seconds'.format(currIndex, result[0], result[1], 'call' if result[1] == 1 else 'calls', (toc - tic)))
                     currIndex += 1
