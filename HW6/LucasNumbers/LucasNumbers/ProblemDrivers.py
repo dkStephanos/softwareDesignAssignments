@@ -152,7 +152,7 @@ class ProblemDrivers(object):
                    result = problemThree.calcLucasNumber(currIndex, startTime, timeSpan)
                    problemThree.numCalls = 0
                    toc = time.perf_counter()
-                   print('lucas {0} is {1} - computed with {2} {3} in {4:.5f} seconds'.format(currIndex, result[0] + (0 if result[1] == None else result[1]) , result[2], 'call' if result[2] == 1 else 'calls', (toc - tic)))
+                   print('lucas {0} is {1} - computed with {2} {3} in {4:.5f} seconds'.format(currIndex, result[0], result[2], 'call' if result[2] == 1 else 'calls', (toc - tic)))
                    currIndex += 1
                 except TimeoutError as err:
                     print('\n\ntimeout at lucas {0} after {1} {2}'.format(currIndex, timeSpan, 'seconds' if timeSpan > 1 else 'second'))
@@ -180,7 +180,10 @@ class ProblemDrivers(object):
             lucasIndex = self.getLucasIndex()
             if lucasIndex == -2:
                 return
-            lucasNumberFloat = problemFive.calcLucasNumber(lucasIndex)
-            lucasNumberInt = int(round(lucasNumberFloat))
-            lucasNumberDigitCount = len(str(lucasNumberInt))
-            print('lucas {0} is {1} -- i.e., {2} -- with {3} {4}'.format(lucasIndex, lucasNumberFloat, lucasNumberInt, lucasNumberDigitCount, 'digit' if lucasNumberDigitCount == 1 else 'digits' ))
+            currIndex = 1470
+            while currIndex <= lucasIndex:
+                lucasNumberFloat = problemFive.calcLucasNumber(currIndex)
+                lucasNumberInt = int(round(lucasNumberFloat))
+                lucasNumberDigitCount = len(str(lucasNumberInt))
+                print('lucas {0} is {1} -- i.e., {2} -- with {3} {4}'.format(lucasIndex, lucasNumberFloat, lucasNumberInt, lucasNumberDigitCount, 'digit' if lucasNumberDigitCount == 1 else 'digits' ))
+                currIndex += 1
