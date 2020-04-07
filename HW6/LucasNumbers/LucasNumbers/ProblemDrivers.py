@@ -180,7 +180,7 @@ class ProblemDrivers(object):
             lucasIndex = self.getLucasIndex()
             if lucasIndex == -2:
                 return
-            currIndex = 1470
+            currIndex = 0
             while currIndex <= lucasIndex:
                 lucasNumberFloat = problemFive.calcLucasNumber(currIndex)
                 lucasNumberInt = int(round(lucasNumberFloat))
