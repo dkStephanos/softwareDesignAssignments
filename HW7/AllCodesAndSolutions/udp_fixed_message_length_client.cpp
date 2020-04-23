@@ -88,7 +88,7 @@ void udp_fixed_message_length_client_class::request(const string& message, const
     buffer_.reset();   // set buffer back to start for filling
     unsigned long i = 0;
     while (i < (*buffer_.p_size()) && i < message.length()) buffer_ << message[i++];
-    while (i++ < (*buffer_.p_size())) buffer_ << '#';
+    while (i++ < (*buffer_.p_size())) buffer_ << ' ';
 
     //  *** do the send ***
     //
